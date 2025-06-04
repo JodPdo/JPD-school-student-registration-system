@@ -16,6 +16,14 @@ Follow the instructions below to run this project on your local machine.
 - Docker (for running PostgreSQL)
 - Git
 
+## Tech
+
+- Spring Boot
+- Docker
+- PostgreSQL
+- Git / GitHub
+- VS Code
+
 ---
 
 ## Project Setup
