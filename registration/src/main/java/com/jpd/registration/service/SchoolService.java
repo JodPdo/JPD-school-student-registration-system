@@ -18,7 +18,7 @@ public class SchoolService {
         this.schoolRepo = schoolRepo;
     }
 
-    public School creaSchool(SchoolPayload payload)
+    public School createSchool(SchoolPayload payload)
     {
         School school = new School();
         school.setName(payload.getName());
