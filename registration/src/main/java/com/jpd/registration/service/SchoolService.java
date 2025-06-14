@@ -1,6 +1,8 @@
 package com.jpd.registration.service;
 
 import java.time.LocalDateTime;
+
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import com.jpd.registration.model.School;
 import com.jpd.registration.payload.SchoolPayload;
@@ -16,18 +18,19 @@ public class SchoolService {
         this.schoolRepo = schoolRepo;
     }
 
-    public School createSchool(SchoolPayload payload)
+    public School creaSchool(SchoolPayload payload)
     {
-        schoolRepo.findByName(payload.getName())
-            .ifPresent(s ->
-            {
-                throw new IllegalArgumentException("School with name '" + payload.getName() + "already exists");
-            });
-
         School school = new School();
         school.setName(payload.getName());
         school.setCreatedAt(LocalDateTime.now());
         school.setUpdatedAt(LocalDateTime.now());
-        return schoolRepo.save(school);
+
+        try
+        {
+            return schoolRepo.save(school);
+        } catch (DataIntegrityViolationException ex)
+        {
+            throw new IllegalArgumentException("School name already exists: " + payload.getName());
+        }
     }
 }

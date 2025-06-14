@@ -1,15 +1,19 @@
 package com.jpd.registration.model;
 
 import java.time.LocalDateTime;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "schools")
 public class School {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "school_seq")
-    @SequenceGenerator(name = "school_seq", sequenceName = "school_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false, unique = true)

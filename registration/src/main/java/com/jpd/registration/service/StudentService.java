@@ -5,7 +5,8 @@ import org.springframework.stereotype.Service;
 import com.jpd.registration.model.School;
 import com.jpd.registration.model.Student;
 import com.jpd.registration.payload.StudentPayload;
-import com.jpd.registration.repository.*;
+import com.jpd.registration.repository.SchoolRepository;
+import com.jpd.registration.repository.StudentRepository;
 
 @Service
 public class StudentService {
@@ -21,15 +22,15 @@ public class StudentService {
 
     public Student createStudent(StudentPayload payload)
     {
-        School school = schoolRepo.findByName(payload.getSchool())
-            .orElseThrow(() -> new IllegalArgumentException("School not found" + payload.getSchool()));
+        School school = schoolRepo.findByName(payload.getSchoolName())
+            .orElseThrow(() -> new IllegalArgumentException("School not found" + payload.getSchoolName()));
 
-            Student student = new Student();
-            student.setFirstName(payload.getFirstName());
-            student.setLastName(payload.getLastName());
-            student.setSchool(school);
-            student.setCreatedAt(LocalDateTime.now());
-            student.setUpdatedAt(LocalDateTime.now());
+            Student student = new Student
+            (
+                payload.getFirstName(),
+                payload.getLastName(),
+                school
+            );
 
             return studentRepo.save(student);
     }
