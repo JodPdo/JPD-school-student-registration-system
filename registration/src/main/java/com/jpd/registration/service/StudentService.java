@@ -1,6 +1,5 @@
 package com.jpd.registration.service;
 
-import java.time.LocalDateTime;
 import org.springframework.stereotype.Service;
 import com.jpd.registration.model.School;
 import com.jpd.registration.model.Student;
