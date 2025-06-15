@@ -6,8 +6,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.jpd.registration.payload.SchoolPayload;
+import com.jpd.registration.payload.response.SchoolListResponse;
+import com.jpd.registration.payload.response.SchoolResponse;
 import com.jpd.registration.model.School;
 import com.jpd.registration.service.SchoolService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/v1/schools")
@@ -26,4 +30,18 @@ public class SchoolController {
         School createdSchool = schoolService.createSchool(payload);
         return ResponseEntity.ok(createdSchool);
     }
+
+    @GetMapping
+    public ResponseEntity<SchoolListResponse> getAllSchools()
+    {
+        return ResponseEntity.ok(schoolService.getAllSchools());
+    }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<SchoolResponse> getSchoolById(@PathVariable Long id)
+    {
+        return ResponseEntity.ok(schoolService.getSchoolById(id));
+    }
+    
+
 }
