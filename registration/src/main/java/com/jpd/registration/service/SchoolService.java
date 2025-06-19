@@ -50,4 +50,15 @@ public class SchoolService {
         .orElseThrow(() -> new IllegalArgumentException("School not found with id: " + id));
     return new SchoolResponse(school);
     }
+
+    public School updateSchool(Long id, SchoolPayload patload)
+    {
+        School school = schoolRepo.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("School not found with id: " + id));
+
+        school.setName(patload.getName());
+        school.setUpdatedAt(LocalDateTime.now());
+
+        return schoolRepo.save(school);
+    }
 }

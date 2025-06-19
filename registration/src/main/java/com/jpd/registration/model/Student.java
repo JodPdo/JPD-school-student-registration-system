@@ -33,6 +33,11 @@ public class Student {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
+    public Student()
+    {
+        // Default constructor for JPA
+    }
+
     public Student(String firstName, String lastName, School school)
     {
         this.firstName = firstName;
