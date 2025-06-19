@@ -1,7 +1,6 @@
 package com.jpd.registration.payload.response;
 
 import java.time.LocalDateTime;
-
 import com.jpd.registration.model.School;
 
 public class SchoolResponse {

@@ -3,7 +3,6 @@ package com.jpd.registration.service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import com.jpd.registration.model.School;
@@ -49,7 +48,7 @@ public class SchoolService {
     public SchoolResponse getSchoolById(Long id)
     {
         School school = schoolRepo.findById(id)
-        .orElseThrow(() -> new IllegalArgumentException("School not foud with id: " + id));
+        .orElseThrow(() -> new IllegalArgumentException("School not found with id: " + id));
     return new SchoolResponse(school);
     }
 }

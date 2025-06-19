@@ -1,6 +1,5 @@
 package com.jpd.registration.model;
 
-
 import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,7 +35,10 @@ public class Student {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    public Student() { }
+    public Student()
+    {
+        // Default constructor for JPA
+    }
 
     public Student(String firstName, String lastName, School school)
     {
