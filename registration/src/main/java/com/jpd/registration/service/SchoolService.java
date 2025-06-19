@@ -1,19 +1,18 @@
 package com.jpd.registration.service;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Service;
 import com.jpd.registration.model.School;
 import com.jpd.registration.payload.SchoolPayload;
 import com.jpd.registration.payload.response.SchoolListResponse;
 import com.jpd.registration.payload.response.SchoolResponse;
 import com.jpd.registration.repository.SchoolRepository;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
 
 @Service
 public class SchoolService {
-
     private final SchoolRepository schoolRepo;
 
     public SchoolService(SchoolRepository schoolRepo)

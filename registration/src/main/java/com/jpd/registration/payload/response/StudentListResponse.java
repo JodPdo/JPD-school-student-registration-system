@@ -3,7 +3,6 @@ package com.jpd.registration.payload.response;
 import java.util.List;
 
 public class StudentListResponse {
-    
     private List<StudentResponse> students;
 
     public StudentListResponse(List<StudentResponse> students)
