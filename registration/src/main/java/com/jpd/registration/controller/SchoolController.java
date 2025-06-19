@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,5 +41,12 @@ public class SchoolController {
     public ResponseEntity<SchoolResponse> getSchoolById(@PathVariable Long id)
     {
         return ResponseEntity.ok(schoolService.getSchoolById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<School> updateSchool(@PathVariable Long id, @RequestBody SchoolPayload payload)
+    {
+        School updatedSchool = schoolService.updateSchool(id, payload);
+        return ResponseEntity.ok(updatedSchool);
     }
 }
