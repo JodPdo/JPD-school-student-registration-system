@@ -1,10 +1,5 @@
 package com.jpd.registration.controller;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import com.jpd.registration.payload.SchoolPayload;
 import com.jpd.registration.payload.response.SchoolListResponse;
 import com.jpd.registration.payload.response.SchoolResponse;
@@ -12,11 +7,15 @@ import com.jpd.registration.model.School;
 import com.jpd.registration.service.SchoolService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/schools")
 public class SchoolController {
-    
     private final SchoolService schoolService;
 
     public SchoolController(SchoolService schoolService)
@@ -42,6 +41,4 @@ public class SchoolController {
     {
         return ResponseEntity.ok(schoolService.getSchoolById(id));
     }
-    
-
 }

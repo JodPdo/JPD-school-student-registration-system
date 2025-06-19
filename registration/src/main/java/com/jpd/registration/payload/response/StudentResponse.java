@@ -1,8 +1,8 @@
 package com.jpd.registration.payload.response;
 
-import java.time.LocalDateTime;
 import com.jpd.registration.model.School;
 import com.jpd.registration.model.Student;
+import java.time.LocalDateTime;
 
 public class StudentResponse {
     private Long id;
@@ -20,7 +20,6 @@ public class StudentResponse {
         this.school = student.getSchool();
         this.createdAt = student.getCreatedAt();
         this.updatedAt = student.getUpdatedAt();
-
     }
 
     public Long getId() { return id; }
@@ -29,10 +28,9 @@ public class StudentResponse {
 
     public String getLastName() { return lastName; }
 
+    public School getSchool() { return school; }
+
     public LocalDateTime getCreatedAt() { return createdAt; }
 
     public LocalDateTime getUpdatedAt() { return updatedAt; }
-
-    public School getSchool() { return school; }
-
 }

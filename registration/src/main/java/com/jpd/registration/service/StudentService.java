@@ -1,8 +1,5 @@
 package com.jpd.registration.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import org.springframework.stereotype.Service;
 import com.jpd.registration.model.School;
 import com.jpd.registration.model.Student;
 import com.jpd.registration.payload.StudentPayload;
@@ -10,10 +7,12 @@ import com.jpd.registration.payload.response.StudentListResponse;
 import com.jpd.registration.payload.response.StudentResponse;
 import com.jpd.registration.repository.SchoolRepository;
 import com.jpd.registration.repository.StudentRepository;
+import java.util.List;
+import java.util.stream.Collectors;
+import org.springframework.stereotype.Service;
 
 @Service
 public class StudentService {
-    
     private final StudentRepository studentRepo;
     private final SchoolRepository schoolRepo;
 
