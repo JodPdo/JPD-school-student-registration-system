@@ -5,8 +5,11 @@ import com.jpd.registration.payload.SchoolPayload;
 import com.jpd.registration.payload.response.SchoolListResponse;
 import com.jpd.registration.payload.response.SchoolResponse;
 import com.jpd.registration.repository.SchoolRepository;
+import com.jpd.registration.repository.StudentRepository;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -14,10 +17,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class SchoolService {
     private final SchoolRepository schoolRepo;
+    private final StudentRepository studentRepo;
 
-    public SchoolService(SchoolRepository schoolRepo)
+    public SchoolService(SchoolRepository schoolRepo, StudentRepository studentRepo)
     {
         this.schoolRepo = schoolRepo;
+        this.studentRepo = studentRepo;
     }
 
     public School createSchool(SchoolPayload payload)
@@ -60,5 +65,27 @@ public class SchoolService {
         school.setUpdatedAt(LocalDateTime.now());
 
         return schoolRepo.save(school);
+    }
+
+    public Map<String, Object> deleteSchool(Long id)
+    {
+        School school = schoolRepo.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("School not found with id: " + id));
+        
+        long studentCount = studentRepo.findAll().stream()
+            .filter(s -> s.getSchool().getId().equals(id))
+            .count();
+
+        if (studentCount > 0)
+        {
+            throw new IllegalArgumentException("Cannot delete school with students enrolled");
+        }
+
+        schoolRepo.delete(school);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "School has been removed");
+
+        return response;
     }
 }

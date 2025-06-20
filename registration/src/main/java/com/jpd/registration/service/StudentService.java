@@ -8,7 +8,9 @@ import com.jpd.registration.payload.response.StudentResponse;
 import com.jpd.registration.repository.SchoolRepository;
 import com.jpd.registration.repository.StudentRepository;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
@@ -67,5 +69,18 @@ public class StudentService {
         student.setUpdatedAt(LocalDateTime.now());
 
         return studentRepo.save(student);
+    }
+
+    public Map<String, Object> deleteStudent(Long id)
+    {
+        Student student = studentRepo.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Student not found with id: " + id));
+        
+        studentRepo.delete(student);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Student has been removed");
+
+        return response;
     }
 }
