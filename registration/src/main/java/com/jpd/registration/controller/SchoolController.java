@@ -5,6 +5,7 @@ import com.jpd.registration.payload.response.SchoolListResponse;
 import com.jpd.registration.payload.response.SchoolResponse;
 import com.jpd.registration.model.School;
 import com.jpd.registration.service.SchoolService;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/schools")
@@ -48,5 +50,11 @@ public class SchoolController {
     {
         School updatedSchool = schoolService.updateSchool(id, payload);
         return ResponseEntity.ok(updatedSchool);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> deleteSchool(@PathVariable Long id)
+    {
+        return ResponseEntity.ok(schoolService.deleteSchool(id));
     }
 }
