@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Recurse -Force)",
+      "Bash(Sort-Object FullName)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\claw\\\\Desktop\\\\clone-form-git-Project\\\\java+springBoot\\\\registration\" -Recurse | ForEach-Object { $_.FullName })",
+      "Bash(mvnw.cmd compile *)",
+      "PowerShell(cd \"C:\\\\Users\\\\claw\\\\Desktop\\\\clone-form-git-Project\\\\java+springBoot\\\\registration\"; .\\\\mvnw.cmd compile \"-Dmaven.compiler.compilerArgs=-Xlint:deprecation\" 2>&1 | Where-Object { $_ -match \"deprecated|warning\" })",
+      "PowerShell(cd \"C:\\\\Users\\\\claw\\\\Desktop\\\\clone-form-git-Project\\\\java+springBoot\\\\registration\"; .\\\\mvnw.cmd test 2>&1 | Where-Object { $_ -match \"Tests run|WARN|ERROR|BUILD|Failures|error\" } | Select-Object -Last 20)"
+    ]
+  }
+}
